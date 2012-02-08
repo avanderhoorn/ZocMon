@@ -1,0 +1,376 @@
+﻿/*******************************************************************
+
+BEGIN ZocMonGraph 
+
+*******************************************************************/
+
+.zocMon {
+	font-family: Arial,Helvetica,Sans-serif;
+}
+
+.zocMonContent 
+{
+	background-color: #fff;
+    border: solid 1px #ccc ;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.20);
+}
+
+.zocMon h1 {
+	font-size: 36px;
+	margin-top: 37px;	
+}
+
+.zocMon h2 {
+	font-size: 28px;	
+	margin: 12px 0;	
+	padding-left: 20px;
+}
+
+.zocMon .configOptions {
+	margin: 0;
+	position: relative;
+	float: left;
+}
+
+.zocMon .configOptions input,
+.zocMon .configOptions label,
+.zocMon .configOptions .button
+{
+    float: left;
+}
+
+.zocMon .configOptions .monthReview 
+{
+    float: left; 
+    position: relative;
+    top: -2px;
+    left: 6px;
+}
+
+.zocMon .selectAllLink 
+{
+    margin: 5px 0 0 10px;
+}
+
+.zocMon .divider {
+	background-color: #b0b0b0;
+	width: 95%;
+	margin: 0 auto;
+	height: 1px;
+}
+
+.zocMon .vertDivider 
+{
+    width: 1px;
+    height: 430px;
+    margin: 40px 0 22px 0;
+    float: left;
+    background-color: #B0B0B0;
+}
+
+.zocMon .-form .-form-row 
+{
+    margin-bottom: 0;
+    padding-bottom: 2px;
+}
+
+.zocMon .-form .-form-row-set 
+{
+    margin-bottom: 0;
+}
+
+.zocMon .configOption input {
+	float: left;
+	clear: left;
+	margin: 0 0 6px 0;
+}
+
+.zocMon .configOptions .filter {
+	float: left;
+	width: 100%;
+	margin: 0 0 16px 0;
+}
+
+.historyRange .-select-wrapper 
+{
+    width: 220px !important;
+}
+
+.savedGroupsInner .-select-wrapper 
+{
+    width: 240px !important;
+}
+
+.zocMon .configOptions .configResults 
+{
+    width: 471px;
+    margin: 12px 0 12px 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 302px;
+    float: left;
+    padding-left: 4px;
+}
+
+.zocMon .configOptions .filter label 
+{
+    margin: 12px 10px 0 20px;    
+    float: left;
+}
+
+.zocMon .configOptionName {
+	display: block;
+	font-size: 16px;
+	float: left;
+	margin: 0 0 6px 6px;
+}
+
+.zocMon .graphOptions {
+	float: left;
+	position: relative;
+}
+
+.zocMon .graphOptions .topForm  
+{
+    margin-left: 20px;
+}
+
+.zocMon .graphOptions .bottomForm 
+{
+    margin: 0 0 0 20px;
+}
+
+.zocMon .graphOptions .bottomForm .z3
+{
+    width: 230px;
+}
+
+.zocMon .graphOptions .bottomForm .otherOptionsWrapper 
+{
+    margin-left: 0;
+}
+
+.zocMon .graphOptions span,
+.zocMon .graphOptions label[for="fromDate"],
+.zocMon .graphOptions label[for="toDate"] {
+	clear: left;
+}
+
+.zocMon .zocMonContent .button,
+.zocMon .zocMonContent .button span {
+	background-color: #fff;
+}
+
+.zocMon .savedGroups .button,
+.zocMon .savedGroups .button span {
+	background-color: #fbf8f4;
+}
+
+.zocMon .configOptions .addLink {
+	position: absolute;
+	right: 20px;
+	bottom: -42px;
+}
+
+.zocMon .graphOptions .resetLink {
+	position: absolute;
+	right: 22px;
+	bottom: -36px;
+}
+
+.zocMon .required {
+	color: red;
+}
+
+.zocMon .graphOptions .orDivider 
+{
+    float: left;
+    clear: left;
+    margin: 12px 0 0 0;
+}
+
+.zocMon h3 
+{
+    font-size: 18px;
+    margin: 8px 0 12px 0;
+}
+
+.zocMon .graphOptions .-form-row 
+{
+    padding-bottom: 10px;
+}
+
+.zocMon .graphOptions .-form-input  
+{
+    padding-bottom: 2px;
+    margin-right: 5px;
+    width: 445px;
+}
+
+.zocMon .-form .-form-input-option-name 
+{
+    font-weight: normal;
+}
+
+.zocMon .graphOptions .-form-input-1 .-form-input-text 
+{
+    width: 80px;
+}
+
+.zocMon .graphOptions .-form-input-1 
+{
+    width: 102px;
+}
+
+.zocMon .graphOptions #titleBox  
+{
+    width: 401px;   
+}
+
+.zocMon .instruction {
+	font-size: 13px; 
+	font-style: italic;
+	width: 40%;
+}
+
+.zocMon .graphBank {
+	float: left;
+	position: relative;
+	min-height: 234px;
+}
+
+.zocMon .graphBank .generateLink {
+	position: absolute;
+	right: 22px;
+	top: 18px;
+}
+
+.zocMon .graphBank .saveLink {
+	position: absolute;
+	right: 154px;
+	top: 18px;
+}
+
+.zocMon .graphBank .clearLink {
+	position: absolute;
+	right: 665px;
+	top: 18px;
+}
+
+.zocMon .graphBank .saveEditsLink 
+{
+    position: absolute;
+    top: 18px;
+    right: 202px;
+    display: none;
+}
+
+.zocMon .graphBank .cancelEditsLink 
+{
+    position: absolute;
+    top: 18px;
+    right: 92px;
+    display: none;
+}
+
+.zocMon .graphBank .graphItem {
+	float: left;
+    min-height: 140px;
+    width: 32%;
+	margin: 6px 0;
+	padding-left: 20px;
+}
+
+.zocMon .graphBank .graphItem span {
+	float: left;
+}
+
+.zocMon .graphBank .graphItem .title {
+	font-weight: bold;
+	margin: 0 3px 0 12px;
+}
+
+.zocMon .graphBank .graphItem .removeLink {
+	width: 17px;
+	height: 17px;
+	margin: 0 0 0 6px;
+	background-image: url("/images/widgets/dialog-close.png");
+	cursor: pointer;
+	float: left;
+}
+
+.zocMon .graphBank .graphItem .lines {
+	clear: left;
+	margin-left: 18px;
+	width: 100%;
+}
+
+.zocMon .graphBank .graphItem ul {
+ 	margin-left: 24px;	
+ 	float: left;
+ 	clear: left;
+}
+
+.zocMon .graphBank .graphItem li {
+ 	margin-left: 6px;	
+}
+
+.zocMon .savedGroups 
+{
+    margin: 0 0 20px 0;
+}
+
+.zocMon .graphBank .groupName 
+{
+    position: absolute;
+    top: 14px;
+    right: 290px;
+}
+
+.zocMon .graphBank label 
+{
+    float: left;
+    margin-top: 10px;
+}
+
+.zocMon .graphBank input 
+{
+    float: right;
+    margin-right: 20px;
+    width: 100px !important;
+}
+
+.zocMon .graphBank .-form-input-1 
+{
+    width: 210px;  
+}
+
+.zocMon .showHideFromTo 
+{
+    float:left;
+    clear: both;
+    font-size: 10px;
+    color: #0008a0;
+    width: 400px;
+    cursor: pointer;
+    margin: 0 0 8px 0;
+}
+
+.zocMon .fromToArea 
+{
+    display: none;
+}
+
+.zocMon .showHideFromTo, .zocMon .fromToArea 
+{
+    display: none !important;
+}
+
+/*******************************************************************
+
+END ZocMonGraph 
+
+*******************************************************************/
+

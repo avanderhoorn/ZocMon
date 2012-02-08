@@ -1,0 +1,48 @@
+﻿.zocMon .savedGroupsInner .-form-input
+{
+    width: 250px;
+}
+
+.zocMon .savedGroupsInner .-form-input-set 
+{
+    float: left;
+    clear: both;
+}
+
+.zocMon .savedGroupsInner .button
+{
+    float: left;
+    margin: 4px 4px 0;
+}
+
+.zocMon .savedGroupsInner 
+{
+    float: right;
+    width: 375px;
+}
+
+.zocMon .savedGroupsInner h3
+{
+    float: left;
+    width: 128px;
+}
+
+.zocMon .savedGroupsInner .instruction 
+{   
+    margin: 4px 0 6px 0;
+}
+
+.zocMon .savedGroupsInner .showMore 
+{
+    float: left;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 12px 0 0 0;
+}
+
+.zocMon .savedGroupsInner .otherSavedGroupOptions 
+{
+    float: left;
+    display: none;
+    margin: 2px 0 0 4px;
+}

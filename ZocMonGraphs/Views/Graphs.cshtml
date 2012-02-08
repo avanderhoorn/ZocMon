@@ -1,0 +1,12 @@
+﻿@inherits WebViewPage<GraphsWrapperViewModel>
+@{
+    ViewData["PageTitle"] = "ZocMon";
+    Layout = "~/Views/Infrastructure/FramesetLayout.cshtml";
+}
+
+
+
+<frameset rows="20px,*" border="0" frameborder="0" framespacing="0">
+    <frame id="outer" name="Outer" src="/remote/infrastructure/ZocMonGraphOuterFrame.html?@(Model.GraphParams)" />
+    <frame id="graphs" name="Graphs" src="@(Model.UrlBase)/remote/infrastructure/GraphsFrame?@(Model.GraphParams)" />
+</frameset>

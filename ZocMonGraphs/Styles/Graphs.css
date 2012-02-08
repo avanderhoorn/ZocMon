@@ -1,0 +1,15 @@
+﻿
+.zocMon .refreshResult 
+{
+    float: left;
+    clear: left;
+    margin: 140px 0 0 40px;
+    color: red;
+}
+
+.zocMon .timeStamp 
+{
+    position: absolute;
+    top: 4px;
+    left: 690px;   
+}

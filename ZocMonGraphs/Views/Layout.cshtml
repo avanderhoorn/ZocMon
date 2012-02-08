@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');</script>
+    
+    <title>@(!string.IsNullOrEmpty((string)ViewData["PageTitle"]) ? string.Format("{0} | ", ViewData["PageTitle"]) : string.Empty)ZocMon</title>
+    
+    @RenderSection("meta", false)
+  
+    @Html.Raw(Bundle.Css()
+        .Add("~/app_styles/lib/reset.css")
+        .Add("~/app_styles/lib/fonts.css")
+        .Add("~/app_styles/lib/structure.css")
+        .Add("~/app_styles/widgets/button.css")
+        .Add("~/app_styles/widgets/select.css")
+        .Render("~/app_styles/combined/zocmon-layout-#.css"))
+    @RenderSection("stylesheets", false)
+    
+</head>
+<body class="infrastructure">
+    
+    @RenderBody()
+    
+    <script src="/app_scripts/vendor/modernizr.js"></script>
+    <script src="/app_scripts/vendor/jquery-1.6.1.min.js"></script>
+    <script src="/app_scripts/vendor/underscore.js"></script>
+    <script src="/app_scripts/views/infrastructure/zocmon.js"></script>
+   
+    @Html.Raw((new Services.ViewManager()).RenderView("~/views/Infrastructure/DiagnosticsFooter.ascx"))
+    @Html.Raw((new Services.ViewManager()).RenderView("~/views/Csr/DiagnosticsScreamer.ascx"))
+
+
+    @RenderSection("javascripts", false)
+</body>
+</html>

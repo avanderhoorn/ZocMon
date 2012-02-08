@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D546959A-5A12-463B-86EA-0CE22432F1D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZocMonLib</RootNamespace>
+    <AssemblyName>ZocMonLib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\lib\NLog2\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Framework\Constant.cs" />
+    <Compile Include="Framework\IProcessingInstructionProvider.cs" />
+    <Compile Include="Framework\IReduceMethodProvider.cs" />
+    <Compile Include="Framework\ISetupSystem.cs" />
+    <Compile Include="Framework\ISetupSystemData.cs" />
+    <Compile Include="Framework\ISetupSystemTables.cs" />
+    <Compile Include="Framework\IStorageCommandsSetup.cs" />
+    <Compile Include="Framework\ProcessingInstructionProvider.cs" />
+    <Compile Include="Framework\ReduceMethodProvider.cs" />
+    <Compile Include="Framework\SetupSystem.cs" />
+    <Compile Include="Framework\SetupSystemData.cs" />
+    <Compile Include="Framework\SetupSystemTables.cs" />
+    <Compile Include="Framework\StorageCommandsSetup.cs" />
+    <Compile Include="Framework\Support.cs" />
+    <Compile Include="Framework\ISettings.cs" />
+    <Compile Include="Framework\MonitorRecordComparison.cs" />
+    <Compile Include="Framework\RecordCompare.cs" />
+    <Compile Include="Framework\RecordFlush.cs" />
+    <Compile Include="Framework\RecordFlushUpdate.cs" />
+    <Compile Include="Framework\IRecordCompare.cs" />
+    <Compile Include="Framework\IRecordFlush.cs" />
+    <Compile Include="Framework\IRecordFlushUpdate.cs" />
+    <Compile Include="Framework\IDataCache.cs" />
+    <Compile Include="Framework\IRecorder.cs" />
+    <Compile Include="Framework\IRecordReduce.cs" />
+    <Compile Include="Framework\IRecordReduceAggregate.cs" />
+    <Compile Include="Framework\IRecordReduceStatus.cs" />
+    <Compile Include="Framework\IRecordReduceStatusSourceProvider.cs" />
+    <Compile Include="Framework\IConfigSeed.cs" />
+    <Compile Include="Framework\IStorageCommands.cs" />
+    <Compile Include="Framework\DataCache.cs" />
+    <Compile Include="Framework\Recorder.cs" />
+    <Compile Include="Framework\RecordReduce.cs" />
+    <Compile Include="Framework\RecordReduceAggregate.cs" />
+    <Compile Include="Framework\RecordReduceStatus.cs" />
+    <Compile Include="Framework\RecordReduceStatusSourceProvider.cs" />
+    <Compile Include="Framework\RecordReduceStatusSourceProviderFile.cs" />
+    <Compile Include="Framework\ConfigSeed.cs" />
+    <Compile Include="Framework\SettingsExtensionOptions.cs" />
+    <Compile Include="Framework\StorageCommands.cs" />
+    <Compile Include="Framework\StorageLastReduced.cs" />
+    <Compile Include="Framework\SetupMonitorConfig.cs" />
+    <Compile Include="Extensibility\IExternalConfiguration.cs" />
+    <Compile Include="Framework\IStorageFactoryProvider.cs" />
+    <Compile Include="Extensibility\IStorageFactory.cs" />
+    <Compile Include="Framework\ISystemLogger.cs" />
+    <Compile Include="Framework\ISystemLoggerProvider.cs" />
+    <Compile Include="Framework\StorageFactoryProvider.cs" />
+    <Compile Include="Framework\StorageFactory.cs" />
+    <Compile Include="Extension\CollectionExtension.cs" />
+    <Compile Include="Framework\ISetupMonitorConfig.cs" />
+    <Compile Include="_Stuff\ITimeStamped.cs" />
+    <Compile Include="Framework\MonitorInfo.cs" />
+    <Compile Include="Framework\MonitorRecord.cs" />
+    <Compile Include="Plumbing\ExternalConfiguration.cs" />
+    <Compile Include="Framework\SystemLogger.cs" />
+    <Compile Include="Framework\SystemLoggerProvider.cs" />
+    <Compile Include="Plumbing\ZocMonSqlHelper.cs" />
+    <Compile Include="Framework\ProcessingInstructionAccumulate.cs" />
+    <Compile Include="Framework\ProcessingInstructionAverage.cs" />
+    <Compile Include="Framework\IProcessingInstruction.cs" />
+    <Compile Include="Framework\ReduceMethodAccumulate.cs" />
+    <Compile Include="Framework\ReduceMethodAverage.cs" />
+    <Compile Include="Framework\IReduceMethod.cs" />
+    <Compile Include="Framework\MonitorConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Framework\ReduceLevel.cs" />
+    <Compile Include="Framework\MonitorReductionType.cs" />
+    <Compile Include="Framework\Settings.cs" />
+    <Compile Include="_Stuff\TimeRange.cs" />
+    <Compile Include="Framework\StorageCommandsSql.cs" />
+    <Compile Include="Extension\ExceptionExtension.cs" />
+    <Compile Include="ZocMon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

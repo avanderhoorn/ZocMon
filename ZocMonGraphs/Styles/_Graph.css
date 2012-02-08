@@ -1,0 +1,108 @@
+﻿.zocMon .graphWrapper 
+{
+    float: left;
+    margin: 12px 0 0 12px;
+    position: relative;
+}
+
+.zocMon .toggleServerEvents 
+{
+    position: absolute;
+    bottom: 2px;
+    right: 18px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.zocMon .clearZoom 
+{
+    position: absolute;
+    bottom: 14px;
+    right: 18px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+.zocMon .Ratio .clearZoom 
+{
+    display: none;
+}
+
+.zocMon .graphHeader 
+{
+    float: left;
+    clear: both;
+    position: relative;
+    padding: 6px 6px 14px 6px;
+}
+
+.zocMon .Line .graphHeader, 
+.zocMon .MonthReview .graphHeader 
+{
+    padding-bottom: 28px;
+}   
+
+.zocMon .title 
+{
+    float:left;
+    font-size: 36px;
+    margin-left: 5%;
+}
+
+.zocMon .subTitle 
+{
+    float: left;
+    font-size: 16px;
+    margin-left: 5%;
+}
+
+.zocMon .legend,
+.zocMon .placeholder 
+{
+    float: left;
+    clear: left;
+}
+
+.zocMon .legend 
+{
+    min-height: 110px;
+}
+
+.zocMon .legend .legendColorBox, .zocMon .legend .legendLabel  
+{
+    padding: 6px;
+    font-size: 12px;
+}
+
+.zocMon .Ratio .legend,
+.zocMon .Ratio .toggleServerEvents,
+.zocMon .MonthReview .toggleServerEvents
+{
+    display: none;
+}
+
+.zocMon .tickLabel 
+{
+    font-size: 12px;
+}
+
+.zocMon .MonthReview .x1Axis 
+{
+    color: #edc240 !important;
+}
+
+.zocMon .MonthReview .x2Axis 
+{
+    color: #b2d4ee !important;
+}
+
+.zocMon .MonthReview .x3Axis 
+{
+    color: #cb4b4b !important;
+}
+
+.zocMon .MonthReview .x4Axis 
+{
+    color: #70b270 !important;
+}

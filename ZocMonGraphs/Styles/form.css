@@ -1,0 +1,256 @@
+﻿
+.-form {
+    text-align: left;
+    zoom: 1;
+}
+.-form:before,
+.-form:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.-form:after {
+    clear: both;
+}
+    .-form .-form-name {
+        margin-bottom: 20px;
+        font-size: 20px; line-height: 20px; font-weight: bold;
+    }
+    .-form .-form-explanation {
+        margin-bottom: 12px;
+        font-size: 15px; line-height: 18px;
+    }
+    /* sections */
+    .-form .-form-section-set {
+        margin-bottom: 20px;
+    }
+        .-form .-form-section {
+            padding-top: 20px;
+        }
+        .-form .-form-section:first-child {
+            padding-top: 0;
+        }
+            .-form .-form-section-name {
+                position: relative; left: -30px;
+                padding: 3px 0 2px 30px; margin-bottom: 20px;
+                background: url('/images/arrow_cir_bl.gif') no-repeat;
+                font-size: 16px; line-height: 16px; font-weight: bold;
+            }
+            .-form .-form-section-description {
+                margin-bottom: 33px;
+                color: #a1a1a1;
+                font-size: 14px; line-height: 18px;
+            }
+            /* rows */
+            .-form .-form-row-set {
+                
+            }
+                .-form .-form-row {
+                    position: relative;
+                    padding: 12px 0 21px; 
+                    list-style: none;
+                    zoom: 1;
+                }
+                .-form .-form-row:first-child {
+                    padding-top: 0;
+                }
+                .-form .-form-row:before,
+                .-form .-form-row:after {
+                    content: "\0020";
+                    display: block;
+                    height: 0;
+                    visibility: hidden;
+                }
+                .-form .-form-row:after {
+                    clear: both;
+                }
+                    /* inputs */
+                    .-form .-form-input-set {
+                        zoom: 1;
+                    }
+                    .-form .-form-input-set:before,
+                    .-form .-form-input-set:after {
+                        content: "\0020";
+                        display: block;
+                        height: 0;
+                        visibility: hidden;
+                    }
+                    .-form .-form-input-set:after {
+                        clear: both;
+                    }
+                        .-form .-form-input {
+                            position: relative;
+                            float: left;
+                            margin-left: 10px;
+                            width: 490px;
+                        }
+                        .-form .-form-input:first-child {
+                            margin-left: 0;
+                        }
+                        .-form .-form-input-1 {
+                            width: 115px;
+                        }
+                        .-form .-form-input-2 {
+                            width: 240px;
+                        }
+                        .-form .-form-input-3 {
+                            width: 365px;
+                        }
+                            /* values */
+                            .-form .-form-row label {
+                                display: block;
+                                margin-bottom: 6px;
+                                font-size: 13px; 
+                                line-height: 13px;
+                            }
+                            .-form .-form-input-text,
+                            .-form .-form-input-textarea {
+                                display: block;
+                                width: 448px;
+                                color: #424242;
+                                background: #fff;
+                                box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25);
+                                -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25);
+                                -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25);
+                                border: solid 1px #b4b4b4;
+                                font-family: Arial, Helvetica, sans-serif;
+                                font-size: 15px;
+                            }
+                            .-form .-form-input-text {
+                                height: 38px;
+                                padding: 0 30px 0 10px;
+                                line-height: 38px;
+                            }
+                            .-form .-form-input-1 .-form-input-text {
+                                width: 75px;
+                            }
+                            .-form .-form-input-2 .-form-input-text {
+                                width: 200px;
+                            }
+                            .-form .-form-input-3 .-form-input-text {
+                                width: 325px;
+                            }
+                            /* select */
+                            .-form .-form-input .-select-wrapper {
+                                width: 490px;
+                            }
+                            .-form .-form-input-1 .-select-wrapper {
+                                width: 115px;
+                            }
+                            .-form .-form-input-2 .-select-wrapper {
+                                width: 240px;
+                            }
+                            .-form .-form-input-3 .-select-wrapper {
+                                width: 365px;
+                            }
+                            .-form .-form-input-text-inline {
+                                float: left;
+                                width: 150px;
+                                margin-right: 10px;
+                            }
+                            .-form .-form-input-textarea {
+                                height: 71px;
+                                padding: 10px;
+                                font-size: 14px; line-height: 17px;
+                            }
+                            /* placeholders */
+                            .-form .-placeholder-overlay {
+                                padding: 13px 12px 11px;
+                                color: #aaa;
+                                font-size: 14px; line-height: 14px;
+                            }
+                            .-form .-placeholder-overlay-focus {
+                                color: #ddd;
+                            }
+                            /* validation messages */
+                            .-form .-form-input-invalid-message {
+                                position: absolute; left: 0; bottom: -19px;
+                                display: block;
+                                min-width: 365px;
+                                color: red;
+                                font-size: 13px; line-height: 13px;
+                            }
+                            .-form .-form-input-valid-message {
+                                position: absolute; right: 8px; bottom: 13px;
+                                display: block;
+                                width: 16px; height: 16px;
+                                background: url('/images/wizard/tick.gif') no-repeat;
+                            }
+                            /* checkboxes and radio buttons */
+                            .-form .-form-input-option-set {
+                                list-style: none;
+                            }
+                                .-form .-form-input-option {
+                                    padding-top: 10px;
+                                }
+                                .-form .-form-input-option:first-child {
+                                    padding-top: 0;
+                                }
+                                    .-form .-form-input-option label {
+                                        display: block;
+                                        margin: 0;
+                                        cursor: pointer;
+                                        zoom: 1;
+                                    }
+                                    .-form .-form-input-option label:before,
+                                    .-form .-form-input-option label:after {
+                                        content: "\0020";
+                                        display: block;
+                                        height: 0;
+                                        visibility: hidden;
+                                    }
+                                    .-form .-form-input-option label:after {
+                                        clear: both;
+                                    }
+                                        .-form .-form-input-option input {
+                                            float: left;
+                                        }
+                                        .-form .-form-input-option span {
+                                            display: block; float: left; clear: none;
+                                            padding-left: 10px;
+                                            font-weight: bold;
+                                        }
+                                    
+                            /* notes */
+                            .-form .note {
+                                width: 488px;
+                                padding-top: 6px;
+                                color: #666;
+                            }
+                            /* creditcard */
+                            .-form .-creditcard {
+                                position: absolute; right: 120px; top: -11px;
+                            }
+            .-form .-form-inline-confirmation {
+                height: 28px;
+                padding-bottom: 21px; margin-bottom: 32px;
+                font-size: 20px; line-height: 20px; font-weight: bold;
+            }
+            .-form .-form-fineprint {
+                width: 488px;
+                margin-bottom: 32px;
+                font-size: 11px; line-height: 14px;
+            }
+            .-form .-form-tip {
+                display: none;
+                clear: both;
+                padding-top: 20px;
+                text-align: left;
+            }
+                .-form .-form-tip-text {
+                    margin-bottom: 4px;
+                    color: red;
+                    font-size: 13px; line-height: 16px; font-weight: bold;
+                }
+                .-form .-form-tip-link {
+                    font-size: 16px; line-height: 16px; font-weight: bold;
+                }
+                
+  .-form .-form-reminder {
+    color:red;
+    font-size:14px;
+    font-weight:bold;
+    text-align: right;
+    margin-bottom: 8px;
+  }

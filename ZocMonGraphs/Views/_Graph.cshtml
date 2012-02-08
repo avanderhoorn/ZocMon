@@ -1,0 +1,48 @@
+﻿@inherits WebViewPage<GraphViewModel>
+
+<div class="graphWrapper @(Html.Raw(Model.Type.ToString()))" style="width:@(Html.Raw(Model.Width.ToString()))px;">
+    
+    <div class="graphHeader" style="width:@(Html.Raw(Model.Width.ToString()))px;">
+        <div class="title" style="font-size: @(Html.Raw(Model.TitleSize.ToString()))px;width:@(Html.Raw(Model.Width.ToString()))px;">@(Html.Raw(Model.Title))</div>
+        <div class="subTitle" style="width:@(Html.Raw(Model.Width.ToString()))px;">@(Html.Raw(Model.SubTitle))</div>
+        <a class="toggleServerEvents" data-showevents="@(Html.Raw(Model.ShowEvents.ToString().ToLower()))" data-index="@(Html.Raw(Model.Index.ToString()))">toggle server events</a>
+        <a class="clearZoom" data-index="@(Html.Raw(Model.Index.ToString()))">clear zoom</a>
+    </div>
+    
+    <div id="placeholder@(Html.Raw(Model.Index.ToString()))" data-index="@(Html.Raw(Model.Index.ToString()))" data-showevents="@(Html.Raw(Model.ShowEvents.ToString().ToLower()))" class="placeholder" 
+        style="width:@(Html.Raw(Model.Width.ToString()))px;height:@(Html.Raw(Model.Height.ToString()))px;">
+    </div>
+    <div style="width:@(Html.Raw(Model.Width.ToString()))px;" id="legend@(Html.Raw(Model.Index.ToString()))" 
+        class="legend">
+    </div>
+</div>
+
+<script type="text/javascript">
+    zocMonGraphs.push({
+        opts: {
+            yaxis: {
+                tickFormatter: @(Html.Raw(Model.TickFormatter)),
+                min: @(HttpUtility.JavaScriptStringEncode(Model.MinYAxis)),
+                max: @(HttpUtility.JavaScriptStringEncode(Model.MaxYAxis)) 
+            },
+            grid: {
+                markings: @(Html.Raw(Model.Events))
+            }
+        },
+        labels: @(Html.Raw(Model.Labels)),
+        dataSources: @(Html.Raw(Model.DataSources)),
+        alertStatus: @(HttpUtility.JavaScriptStringEncode(Model.AlertStatus.ToLower())),
+        labeledData:  @(Html.Raw(Model.LabeledData)),
+        index: @(HttpUtility.JavaScriptStringEncode(Model.Index.ToString())),
+        isRatio: @(Html.Raw(Model.IsRatio.ToString().ToLower())),
+        showEvents: @(Html.Raw(Model.ShowEvents.ToString().ToLower())),
+        type: '@(Html.Raw(Model.Type.ToString()))',
+        xaxis: {
+            ticks: @(Html.Raw(Model.Ticks)),
+            autoscaleMargin: 0.02,
+            min: @(HttpUtility.JavaScriptStringEncode(Model.MinXAxis)),
+            max: @(HttpUtility.JavaScriptStringEncode(Model.MaxXAxis)),
+            labelAngle: 90      
+        }
+    });
+</script>

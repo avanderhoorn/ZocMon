@@ -1,0 +1,47 @@
+﻿body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: 'AxelBold';
+    src: url('/fonts/axel-bold-webfont.eot');
+    src: url('/fonts/axel-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/axel-bold-webfont.woff') format('woff'),
+         url('/fonts/axel-bold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'AxelRegular';
+    src: url('/fonts/axel-regular-webfont.eot');
+    src: url('/fonts/axel-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         /*url('/fonts/axel-regular-webfont.woff') format('woff'),*/
+         url('/fonts/axel-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'AxelSCBold';
+    src: url('/fonts/axelsc-bold-webfont.eot');
+    src: url('/fonts/axelsc-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/axelsc-bold-webfont.woff') format('woff'),
+         url('/fonts/axelsc-bold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'AxelSCRegular';
+    src: url('/fonts/axelsc-regular-webfont.eot');
+    src: url('/fonts/axelsc-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         /*url('/fonts/axelsc-regular-webfont.woff') format('woff'),*/
+         url('/fonts/axelsc-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}

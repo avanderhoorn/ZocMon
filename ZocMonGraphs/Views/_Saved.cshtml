@@ -1,0 +1,30 @@
+﻿@inherits WebViewPage<SavedGroupsViewModel>
+<div class="savedGroupsInner">
+<h3>Saved Groups</h3>
+@*<span class="instruction">1. Select a Saved Group of graphs. <br />2. Click Go.</span>*@
+
+@using (Html.BeginForm("Graphs", "Infrastructure", FormMethod.Get, new { @class = "-form" }))
+{
+    <a class="showMore">show more options</a>
+    <div class="otherSavedGroupOptions">
+        <a class="button button-green button-small button-green-small deleteLink">
+            <span>Delete</span>
+        </a>
+        <a class="button button-green button-small button-green-small editLink">
+            <span>Edit</span>
+        </a>
+    </div>
+    <ul class="-form-input-set">
+        <li class="-form-input">
+            @Html.DropDownList("savedGroup", Model.SavedGroupsDropdown, new { @class = "-select" })
+        </li>
+    </ul>
+
+    <a class="button button-green button-small button-green-small goLink">
+        <span>Go!</span>
+    </a>
+   
+    <input type="hidden" id="formAction" name="formAction" value="go" />
+    <input type="hidden" name="password" value="Red007Flag" />
+}
+</div>

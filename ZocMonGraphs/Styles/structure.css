@@ -1,0 +1,100 @@
+﻿
+.z__ {
+    width: 980px;
+    margin: 0 auto;
+    position: relative;
+}
+.z_ {
+    zoom: 1;
+}
+.z_:before,
+.z_:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}.z_:after {
+    clear: both;
+}
+    .z {
+        float: left;
+        margin-left: 16px;
+    }
+    .z:first-child,
+    .zfirst {
+        margin-left: 0;
+    }
+    .z12 {
+        width: 980px;
+    }
+    .z11 {
+        width: 897px;
+    }
+    .z10 {
+        width: 814px;
+    }
+    .z9 {
+        width: 731px;
+    }
+    .z8 {
+        width: 648px;
+    }
+    .z7 {
+        width: 565px;
+    }
+    .z6 {
+        width: 482px;
+    }
+    .z5 {
+        width: 399px;
+    }
+    .z4 {
+        width: 316px;
+    }
+    .z3 {
+        width: 233px;
+    }
+    .z2 {
+        width: 150px;
+    }
+    .z1 {
+        width: 67px;
+    }
+
+    /* internal */
+    .z12i {
+        width: 946px;
+    }
+    .z11i {
+        width: 879px;
+    }
+    .z10i {
+        width: 796px;
+    }
+    .z9i {
+        width: 713px;
+    }
+    .z8i {
+        width: 630px;
+    }
+    .z7i {
+        width: 547px;
+    }
+    .z6i {
+        width: 464px;
+    }
+    .z5i {
+        width: 381px;
+    }
+    .z4i {
+        width: 298px;
+    }
+    .z3i {
+        width: 215px;
+    }
+    .z2i {
+        width: 132px;
+    }
+    .z1i {
+        width: 49px;
+    }

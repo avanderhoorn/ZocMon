@@ -1,0 +1,283 @@
+﻿@inherits WebViewPage<GraphSelectionViewModel>
+@{
+    ViewData["PageTitle"] = Model.PageTitle;
+    Layout = "~/Views/Infrastructure/Layout.cshtml";
+}
+
+<div class="zocMon z__ clearfix">
+    <div class="z_">
+        <div class="z z6 zfirst">
+            <h1>ZocMon Graph Selection</h1>
+        </div>
+        <div class="z z6 savedGroups">
+            @{Html.RenderPartial("_Saved", Model.SavedGroupsSection);}
+        </div>
+    </div>
+    <div class="z_ zocMonContent">
+        <div class="z_">
+            <div class="z z6 zfirst graphOptions">
+                <form id="addForm" action="" class="-form">
+                    <h2>Settings <span class="instruction required">* = required</span></h2>
+                    <div class="z_ bottomForm">
+                        <div class="z z3 zfirst otherOptionsWrapper">
+                            <ul class="-form-row-set otherOptions">
+                                <li class="-form-row">
+                                    <h3><span class="required">*</span>Graph Type</h3>
+                                    <ul class="-form-input-set">
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="radio" value="Line" id="lineGraph" name="graphType" checked="checked" />
+                                                <span>Line</span>
+                                            </label>
+                                        </li>
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="radio" value="Ratio" id="avgGraph" name="graphType" />
+                                                <span>Ratio</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="-form-row">
+                                    <h3>Other Options</h3>
+                                    <ul class="-form-input-option-set">
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="checkbox" id="showYAxis" name="showYAxis" checked="checked" />
+                                                <span>Show Y Axis</span>
+                                            </label>
+                                        </li>
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="checkbox" id="zeroMinYAxis" name="zeroMinYAxis" />
+                                                <span>Force Zero Mininum for Y Axis</span>
+                                            </label>
+                                        </li>
+                                        <li class="-form-input-option showEvents">
+                                            <label>
+                                                <input type="checkbox" id="showEvents" name="showevents" checked="checked" />
+                                                <span>Show Load Balancer Events</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="z z3 zfirst">
+                            <ul class="-form-row-set">
+                                <li class="-form-row reduceLevel">
+                                    <h3><span class="required">*</span>Reduce Level</h3>
+                                    <ul class="-form-input-option-set">
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="radio" name="reduceLevel" id="minutelyData" value="MinutelyData" checked />                                        
+                                                <span>Minutely</span>
+                                            </label>
+                                        </li>
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="radio" name="reduceLevel" id="fiveMinutelyData" value="FiveMinutelyData" />
+                                                <span>FiveMinutely</span>
+                                            </label>
+                                        </li>
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="radio" name="reduceLevel" id="hourlyData" value="HourlyData" />
+                                                <span>Hourly</span>
+                                            </label>
+                                        </li>
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="radio" name="reduceLevel" id="dailyData" value="DailyData" />
+                                                <span>Daily</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <ul class="-form-row-set topForm">
+                        <li class="-form-row historyRange">
+                            <ul class="-form-input-set">
+                                <li class="-form-input">
+                                    @Html.LabelFor((model) => model.HistoryRange, "History Range")
+                                    @Html.DropDownList("historyRange", Model.HistoryRange, new { @class = "-select" })
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="-form-row historyRange">
+                            <span class="showHideFromTo">Show "From" and "To" options</span>
+                            <div class="fromToArea">
+                                <ul class="-form-input-set">
+                                    <li class="-form-input -form-input-1">
+                                        <label for="fromDate">From</label>
+                                        <input type="text" class="-form-input-text" id="fromDate" name="fromDate" /> 
+                                    </li>
+                                    <li class="-form-input -form-input-1">
+                                        <label for="fromTime">&nbsp;</label>
+                                        <input type="text" class="-form-input-text" id="fromTime" name="fromTime" />
+                                    </li>
+                                    <li class="-form-input -form-input-1">
+                                        <label for="toDate">To</label>
+                                        <input type="text" class="-form-input-text" id="toDate" name="toDate" />
+                                    </li>
+                                    <li class="-form-input -form-input-1">
+                                        <label for="toTime">&nbsp;</label>
+                                        <input type="text" class="-form-input-text" id="toTime" name="toTime" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="-form-row">
+                            <ul class="-form-input-set">
+                                <li class="-form-input">
+                                    <label for="titleBox">Graph Title</label>
+                                    <input class="-form-input-text" type="text" id="titleBox" name="titleBox" />
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class="button button-green button-small button-green-small resetLink">
+                        <span>Reset</span>
+                    </a>
+                </form>
+            </div>
+            <div class="vertDivider"></div>
+            <div class="z z6 configOptions -form">
+                <h2>Data Sources</h2> 
+                <div class="filter -form-input-2">
+                    <label for="filter">Filter</label>
+                    <input placeholder="Just start typing..." class="-form-input-text" type="text" name="filter" id="filter" />
+                    <a class="button button-green button-small button-green-small selectAllLink">
+                        <span>Select All Visible</span>
+                    </a>
+                </div>
+                    <form id="configOptionForm" action="" class="-form">
+                        <div class="configResults">
+                            <ul class="-form-row-set">
+                            @foreach (var configOption in Model.ConfigOptionValues)
+                            {
+                                if (@configOption.Name.Length > 0)
+                                {
+                                <li class="configOption -form-row" id="@configOption.Name">
+                                    <ul class="-form-input-option-set">
+                                        <li class="-form-input-option">
+                                            <label>
+                                                <input type="checkbox" id="@(configOption.Name)Input" name="@configOption.Name" />
+                                                <span>@configOption.Name.Replace('_',' ')</span>
+                                            </label>
+                                            <a class="monthReview" target="_blank" href="/remote/infrastructure/Graphs?name=&password=Red007Flag&graphCount=1&isMonthReview=true&ReduceLevel0=@(configOption.Name)">Month Review</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                }
+                            }
+                            </ul>
+                            <div id="noResults">
+                                No results match your filter.          
+                            </div>
+                        </div>
+                    </form>
+                    <a class="button button-green button-small button-green-small addLink">
+                        <span>Add</span>   
+                    </a>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("Graphs", "Infrastructure", FormMethod.Get, new { @id = "graphBankForm", @class = "-form", @target = "_blank" }))
+            {
+            <div class="z_">
+                <div class="z z12 graphBank">
+                    <div class="divider"></div>
+                        <h2>Selected Graphs</h2>   
+                        <a class="button button-green button-small button-green-small clearLink">
+                            <span>Clear</span>   
+                        </a>
+                        <a class="button button-green button-small button-green-small generateLink">
+                            <span>Generate Graphs</span>   
+                        </a>
+                        <a class="button button-green button-small button-green-small saveLink">
+                            <span>Save This Selection</span>   
+                        </a>
+                        <a class="button button-green button-small button-green-small saveEditsLink">
+                            <span>Save Edits</span>   
+                        </a>
+                        <a class="button button-green button-small button-green-small cancelEditsLink">
+                            <span>Cancel Edits</span>   
+                        </a>
+                        <ul class="-form-input-set groupName">
+                            <li class="-form-input -form-input-1">
+                                <label for="name">Name</label>
+                                <input type="text" class="-form-input-text" id="name" name="name" /> 
+                            </li>
+                        </ul>
+                        <input type="hidden" name="password" value="Red007Flag" />
+                        <input type="hidden" id="graphBankFormAction" name="formAction" value="saveNew" />
+                        <input type="hidden" id="graphBankSavedGroupId" name="savedGroup" />
+
+                </div>
+            </div>
+            }
+        </div>
+</div>
+
+<script id="graphItem" type="text/html">
+    <div class="graphItem">
+	    <span class="title"><%= title %><% if (title.length > 0) { %>:<% } %></span>
+	    <span><%= dataSources.length %> data sources</span>
+	    <% _.each( formArr, function(obj) {
+		   if (obj.name != 'reduceLevel'){ %>
+		   <input name="<%= obj.name %>" value="<%= obj.value %>" type="hidden" data-origName="<%= obj.name %>"/>
+		<% }}); %>
+		<div class="removeLink"></div>
+		<% _.each( dataSources, function(obj) { 
+			_.each( reduceLevel, function(objInner) { %>
+		    	<input name="reduceLevel" value="<%= obj.name + '/' + obj.name + objInner.value %>" type="hidden" data-origName="reduceLevel"/>
+		<% });
+		}); %>
+		<ul>
+		<% _.each( dataSources, function(obj) { 
+			_.each( reduceLevel, function(objInner) { %>
+				<li>- <%= obj.name.replace(/_/g, ' ') + ' ' + objInner.value %></li>
+		<% });
+		}); %> 
+		</ul>
+    </div>
+</script>
+
+@section stylesheets {
+    @Html.Raw(Bundle.Css()
+        .Add("~/app_styles/views/infrastructure/zocmongraph.css")
+        .Add("~/app_styles/jquery-ui-1.8.14.custom.css")
+        .Add("~/app_styles/widgets/form.css")
+        .Add("~/app_styles/widgets/placeholder.css")
+        .Add("~/app_styles/views/infrastructure/_saved.css")
+        .Render("~/app_styles/combined/zocmongraph-#.css"))
+}
+
+@section javascripts {
+    @Html.Raw(Bundle.JavaScript()
+        .Add("~/app_scripts/vendor/jquery.ui.core.min.js")
+        .Add("~/app_scripts/vendor/jquery.ui.widget.min.js")
+        .Add("~/app_scripts/vendor/jquery.ui.position.min.js")
+        .Add("~/app_scripts/vendor/jquery.ui.autocomplete.min.js")
+        .Add("~/app_scripts/jquery-ui-1.8.13_datepicker.js")
+        .Add("~/app_scripts/jquery-ui-timepicker-addon.js")
+        .Add("~/app_scripts/jquery-slider-1.8.5.js")
+        .Add("~/app_scripts/jquery.quicksearch.js")
+        .Add("~/app_scripts/widgets/jquery.form.js")
+        .Add("~/app_scripts/widgets/jquery.button.js")
+        .Add("~/app_scripts/widgets/jquery.placeholder.js")
+        .Add("~/app_scripts/widgets/jquery.select.js")
+        .Add("~/app_scripts/vendor/jquery.mustache.js")
+        .Render("~/app_scripts/combined/zocmongraph-#.js"))
+
+    <script type="text/javascript">
+        $(function () {
+            zocMon.savedGroup = @Html.Raw(Model.EditGroupJson);
+            zocMon.initZocMon();
+        });
+    </script>
+}

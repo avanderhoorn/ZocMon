@@ -1,0 +1,34 @@
+﻿@inherits WebViewPage<GraphsViewModel>
+@{
+    ViewData["PageTitle"] = Model.PageTitle;
+    Layout = "~/Views/Infrastructure/Layout.cshtml";
+}
+
+<div class="zocMon">
+    
+    <h1>@Model.PageTitle</h1>
+    <script type="text/javascript">
+        var zocMonGraphs = [];
+    </script>
+    @foreach (var graph in Model.GraphsList)
+    {
+        Html.RenderPartial("_Graph", graph);
+    }
+
+    <div class="refreshResult"></div>
+</div>
+
+@section stylesheets {
+    @Html.Raw(Bundle.Css()
+        .Add("~/app_styles/views/infrastructure/graphs.css")
+        .Add("~/app_styles/views/infrastructure/_graph.css")
+        .Render("~/app_styles/combined/graphs-#.css"))
+}
+
+@section javascripts {
+    <script src="/app_scripts/flot/jquery.flot.js"></script>    
+    <script src="/app_scripts/flot/jquery.flot.selection.min.js"></script>    
+    <script type="text/javascript">
+        zocMon.initGraphsPage();
+    </script>
+}
