@@ -1,6 +1,5 @@
 using System;
 using Moq;
-using ZocMonLib.Extensibility;
 using ZocMonLib;
 
 namespace ZocMonLib.Test

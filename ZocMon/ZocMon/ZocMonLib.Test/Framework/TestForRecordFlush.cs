@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Moq;
 using Xunit;
-using ZocMonLib.Extensibility;
+using ZocMonLib;
 
 namespace ZocMonLib.Test
 {

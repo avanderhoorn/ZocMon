@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data; 
 
-namespace ZocMonLib.Plumbing
+namespace ZocMonLib
 {
 
     public static class ZocMonSqlHelper

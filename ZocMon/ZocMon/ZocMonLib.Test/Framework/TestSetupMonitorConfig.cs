@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Moq;
 using Xunit;
-using ZocMonLib.Extensibility;
+using ZocMonLib;
 
 namespace ZocMonLib.Test
 {

@@ -2,7 +2,6 @@
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using ZocMonLib.Extensibility;
 using ZocMonLib;
 
 namespace ZocMonLib

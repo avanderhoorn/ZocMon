@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace ZocMonLib.Extensibility
+namespace ZocMonLib
 {
     public interface IStorageFactory
     { 

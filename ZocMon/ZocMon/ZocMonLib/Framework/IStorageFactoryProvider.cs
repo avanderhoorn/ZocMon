@@ -1,4 +1,4 @@
-namespace ZocMonLib.Extensibility
+namespace ZocMonLib
 {
     public interface IStorageFactoryProvider
     {

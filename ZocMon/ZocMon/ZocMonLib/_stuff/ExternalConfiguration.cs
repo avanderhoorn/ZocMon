@@ -1,11 +1,13 @@
 ﻿using System.Configuration;
 using System.Globalization;
 using System.IO;
-using System.Xml;
-using ZocMonLib.Extensibility;
+using System.Xml; 
 
-namespace ZocMonLib.Plumbing
+namespace ZocMonLib
 {
+    /// <summary>
+    /// NOTE: Not currently been setup, when i get a chance I'll implement.
+    /// </summary>
     public class ExternalConfiguration : ConfigurationSection, IExternalConfiguration
     { 
         [ConfigurationProperty("enabled", DefaultValue = "false", IsRequired = false)]
