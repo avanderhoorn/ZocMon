@@ -93,7 +93,7 @@
     <Compile Include="Framework\ISystemLoggerProvider.cs" />
     <Compile Include="Framework\StorageFactoryProvider.cs" />
     <Compile Include="Framework\StorageFactory.cs" />
-    <Compile Include="Extension\CollectionExtension.cs" />
+    <Compile Include="Support\CollectionExtension.cs" />
     <Compile Include="Framework\ISetupMonitorConfig.cs" />
     <Compile Include="Framework\ITimeStamped.cs" />
     <Compile Include="Framework\MonitorInfo.cs" />
@@ -114,14 +114,11 @@
     <Compile Include="Framework\MonitorReductionType.cs" />
     <Compile Include="Framework\Settings.cs" />
     <Compile Include="Framework\StorageCommandsSql.cs" />
-    <Compile Include="Extension\ExceptionExtension.cs" />
+    <Compile Include="Support\ExceptionExtension.cs" />
     <Compile Include="ZocMon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
