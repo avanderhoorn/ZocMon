@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data; 
+using System.Data;
+using Dapper;
 
 namespace ZocMonLib
 {
@@ -9,7 +10,6 @@ namespace ZocMonLib
     {
         public static int ExecuteScalarWithConnection<T>(IDbConnection conn, string sql)
         {
-            throw new NotImplementedException();
         }
 
         public static void ExecuteNonQueryWithConnection(IDbConnection conn, string command)

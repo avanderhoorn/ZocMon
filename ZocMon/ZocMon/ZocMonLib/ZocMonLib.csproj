@@ -101,6 +101,8 @@
     <Compile Include="_stuff\ExternalConfiguration.cs" />
     <Compile Include="Framework\SystemLogger.cs" />
     <Compile Include="Framework\SystemLoggerProvider.cs" />
+    <Compile Include="_stuff\SqlMapper.cs" />
+    <Compile Include="_stuff\SqlMapperExtensions.cs" />
     <Compile Include="_stuff\ZocMonSqlHelper.cs" />
     <Compile Include="Framework\ProcessingInstructionAccumulate.cs" />
     <Compile Include="Framework\ProcessingInstructionAverage.cs" />
