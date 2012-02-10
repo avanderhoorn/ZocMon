@@ -13,3 +13,4 @@ _ReSharper.*
 *.rptproj.user
 *.db
 *.user
+*.dotCover
