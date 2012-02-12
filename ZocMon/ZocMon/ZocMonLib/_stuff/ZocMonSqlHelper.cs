@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Dapper;
+using Dapper.Contrib.Extensions;
 
 namespace ZocMonLib
 {
@@ -36,15 +37,10 @@ namespace ZocMonLib
         {
             return conn.Execute(sql, p, transaction);
         }
-
-        //public static int ExecuteNonQueryWithConnection(IDbConnection conn, string sql, MonitorRecord<double> update)
-        //{
-        //    return conn.Execute(sql, update);
-        //}
-
-        public static void InsertRecordWithConnection(IDbConnection conn, object o, string targetReducedTableName)
+         
+        public static void InsertRecordWithConnection<T>(IDbConnection conn, T o, string targetReducedTableName) where T : class
         {
-            //need to do
+            conn.Insert(o);
         }
     }
 

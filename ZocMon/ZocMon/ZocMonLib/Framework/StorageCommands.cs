@@ -188,8 +188,9 @@ namespace ZocMonLib
                 lastReductionTime = lastReducedUpdate.TimeStamp - TimeSpan.FromMilliseconds((long)(resolution / 2));
 
                 //No primary key on these table, so have to delete all with that timestamp and insert one back in 
-                var sql = "DELETE FROM " + ParseTableName(tableName) + " WHERE TimeStamp = @time";
-                ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, sql, new { time = lastReducedUpdate.TimeStamp });
+                var sqlDelete = "DELETE FROM " + ParseTableName(tableName) + " WHERE TimeStamp = @time";
+                ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, sqlDelete, new { time = lastReducedUpdate.TimeStamp });
+
                 ZocMonSqlHelper.InsertRecordWithConnection(conn, lastReducedUpdate, tableName);
 
                 _logger.Warn("Expected 0 or 1 updates, but got: " + lastReducedList.Count + " for \"" + tableName + "\"");
