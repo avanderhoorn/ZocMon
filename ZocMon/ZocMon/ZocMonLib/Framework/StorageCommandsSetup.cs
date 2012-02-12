@@ -8,17 +8,17 @@ namespace ZocMonLib
 {
     public class StorageCommandsSetup : IStorageCommandsSetup
     {
-        public IList<ReduceLevel> SelectListAllReduceLevels(IDbConnection conn)
+        public IEnumerable<ReduceLevel> SelectListAllReduceLevels(IDbConnection conn)
         {
             return ZocMonSqlHelper.CreateListWithConnection<ReduceLevel>(conn, StorageCommandsSql.ReduceLevelSql);
         }
 
-        public IList<MonitorConfig> SelectListAllMonitorConfigs(IDbConnection conn)
+        public IEnumerable<MonitorConfig> SelectListAllMonitorConfigs(IDbConnection conn)
         {
             return ZocMonSqlHelper.CreateListWithConnection<MonitorConfig>(conn, StorageCommandsSql.MonitorConfigSql);
         }
 
-        public IList<string> SelectListAllExistingTables(IDbConnection conn)
+        public IEnumerable<string> SelectListAllExistingTables(IDbConnection conn)
         {
             return ZocMonSqlHelper.CreateListWithConnection<string>(conn, StorageCommandsSql.GetExistingTables);
         }

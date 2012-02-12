@@ -85,7 +85,7 @@ namespace ZocMonLib
             {
                 const string rowExistsFormat = "select count(1) from [{0}] where TimeStamp = '{1}'";
                 sql = string.Format(rowExistsFormat, tableName, update.TimeStamp);
-                rowCount = ZocMonSqlHelper.ExecuteScalarWithConnection<int>(conn, sql);
+                rowCount = ZocMonSqlHelper.ExecuteScalarWithConnection(conn, sql);
             }
             if (knownToExist || rowCount == 1)
             {
@@ -154,14 +154,14 @@ namespace ZocMonLib
             const string getExistingFormat = "select * from [{0}] where {1} >= '{2}' order by {1}";
             var getExistingSql = string.Format(getExistingFormat, tableName, StorageCommandsSql.TimeStampParameterName, timeStamp);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, getExistingSql, null, transaction);
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, getExistingSql, transaction).ToList(); //TODO switch to just return the IEnu.
         }
 
         public IList<MonitorRecord<double>> SelectListForLastReduced(string tableName, IDbConnection conn)
         {
             var loadLastReducedUpdateSql = string.Format(StorageCommandsSql.LoadLastUpdateFormat, tableName);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastReducedUpdateSql);
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastReducedUpdateSql).ToList(); //TODO switch to just return the IEnu.
         }
 
         public StorageLastReduced RetrieveLastReducedData(string tableName, long resolution, IDbConnection conn)
@@ -190,7 +190,7 @@ namespace ZocMonLib
                 //No primary key on these table, so have to delete all with that timestamp and insert one back in 
                 var sql = "DELETE FROM " + ParseTableName(tableName) + " WHERE TimeStamp = @time";
                 ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, sql, new { time = lastReducedUpdate.TimeStamp });
-                ZocMonSqlHelper.InsertRecordWithConnection(conn, lastReducedUpdate, null, tableName);
+                ZocMonSqlHelper.InsertRecordWithConnection(conn, lastReducedUpdate, tableName);
 
                 _logger.Warn("Expected 0 or 1 updates, but got: " + lastReducedList.Count + " for \"" + tableName + "\"");
             }
@@ -203,7 +203,7 @@ namespace ZocMonLib
             var whereClause = !hasTargetReducedRecord ? "" : string.Format(StorageCommandsSql.LoadDataWhereFormat, lastReductionTime);
             var loadToBeReducedSql = string.Format(StorageCommandsSql.LoadDataFormat, tableName, whereClause);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadToBeReducedSql);
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadToBeReducedSql).ToList(); //TODO switch to just return the IEnu.
         }
 
         public void ClearReducedData(string configName, DateTime reducedTo, ReduceLevel reduceLevel, IDbConnection conn)
@@ -221,7 +221,7 @@ namespace ZocMonLib
             var dupCheckSql = @"select rl.TimeStamp as TimeStamp, count(1) as Count from [" + tableName + "] rl group by TimeStamp having count(1) > 1";
             var dups = ZocMonSqlHelper.CreateListWithConnection<DupInfo>(conn, dupCheckSql);
 
-            if (dups.Count > 0)
+            if (dups.Any())
             {
                 var msg = "";
                 foreach (var dupInfo in dups)
@@ -231,15 +231,13 @@ namespace ZocMonLib
             }
         }
 
-        public IList<MonitorRecord<double>> SelectListLastComparisonData(string comparisonTableName, IDbConnection conn)
-        { 
-            var loadLastComparisonSql = string.Format(StorageCommandsSql.LoadLastComparisonFormat, comparisonTableName); 
-            var lastComparisonList = ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastComparisonSql);
-             
-            if (lastComparisonList.Count > 1) 
-                throw new DataException("Expected 0 or 1 updates, but got: " + lastComparisonList.Count + " for \"" + loadLastComparisonSql + "\"");
 
-            return lastComparisonList;
+        public IList<MonitorRecord<double>> SelectListLastComparisonData(string comparisonTableName, IDbConnection conn)
+        {
+            var loadLastComparisonSql = string.Format(StorageCommandsSql.LoadLastComparisonFormat, comparisonTableName);
+            var lastComparison = ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastComparisonSql).SingleOrDefault();
+
+            return new List<MonitorRecord<double>> { lastComparison }; //TODO switch to just return the IEnu.
         }
 
         public IList<MonitorRecord<double>> SelectListNeedingToBeReduced(string reducedTableName, bool hasLastPrediction, DateTime reducedDataStartTime, IDbConnection conn)
@@ -247,7 +245,7 @@ namespace ZocMonLib
             var whereClause = (!hasLastPrediction ? "" : string.Format(StorageCommandsSql.LoadDataWhereFormat, reducedDataStartTime));
             var reducedSql = string.Format(StorageCommandsSql.LoadComparisonFormat, reducedTableName, whereClause);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, reducedSql);
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, reducedSql).ToList(); //TODO switch to just return the IEnu.
         }
 
         public void CreateConfigAndReduceLevels(MonitorConfig monitorConfig, IEnumerable<ReduceLevel> reduceLevels, IDbConnection conn)

@@ -5,47 +5,46 @@ using Dapper;
 
 namespace ZocMonLib
 {
-
     public static class ZocMonSqlHelper
     {
-        public static int ExecuteScalarWithConnection<T>(IDbConnection conn, string sql)
+        public static int ExecuteScalarWithConnection(IDbConnection conn, string sql)
         {
+            return conn.Execute(sql);
         }
 
-        public static void ExecuteNonQueryWithConnection(IDbConnection conn, string command)
+        public static IEnumerable<T> CreateListWithConnection<T>(IDbConnection conn, string sql)
         {
+            return conn.Query<T>(sql);
         }
 
-        public static int ExecuteNonQueryWithConnection(IDbConnection conn, string updateSql, MonitorRecord<double> update)
+        public static IEnumerable<T> CreateListWithConnection<T>(IDbConnection conn, string sql, IDbTransaction transaction)
         {
-            throw new NotImplementedException();
+            return conn.Query<T>(sql, transaction: transaction);
         }
 
-        public static List<T> CreateListWithConnection<T>(IDbConnection conn, string sql)
+        public static int ExecuteNonQueryWithConnection(IDbConnection conn, string sql)
         {
-            throw new NotImplementedException();
+            return conn.Execute(sql);
         }
 
-        public static List<T> CreateListWithConnection<T>(IDbConnection conn, string sql, object p)
+        public static int ExecuteNonQueryWithConnection(IDbConnection conn, string sql, object p)
         {
-            throw new NotImplementedException();
+            return conn.Execute(sql, p);
         }
 
-        public static List<T> CreateListWithConnection<T>(IDbConnection conn, string sql, object p, IDbTransaction transaction)
+        public static int ExecuteNonQueryWithConnection(IDbConnection conn, string sql, object p, IDbTransaction transaction)
         {
-            throw new NotImplementedException();
+            return conn.Execute(sql, p, transaction);
         }
 
-        public static void ExecuteNonQueryWithConnection(IDbConnection conn, string MonitorConfigInsert, object p, IDbTransaction transaction)
-        { 
-        }
+        //public static int ExecuteNonQueryWithConnection(IDbConnection conn, string sql, MonitorRecord<double> update)
+        //{
+        //    return conn.Execute(sql, update);
+        //}
 
-        public static void ExecuteNonQueryWithConnection(IDbConnection conn, string sql, object p)
-        { 
-        }
-
-        public static void InsertRecordWithConnection(IDbConnection conn, object o, object p, string targetReducedTableName)
+        public static void InsertRecordWithConnection(IDbConnection conn, object o, string targetReducedTableName)
         {
+            //need to do
         }
     }
 

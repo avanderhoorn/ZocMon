@@ -11,21 +11,21 @@ namespace ZocMonLib
         /// </summary>
         /// <param name="conn"></param>
         /// <returns></returns>
-        IList<ReduceLevel> SelectListAllReduceLevels(IDbConnection conn);
+        IEnumerable<ReduceLevel> SelectListAllReduceLevels(IDbConnection conn);
 
         /// <summary>
         /// Pulls out all monitor configs 
         /// </summary>
         /// <param name="conn"></param>
         /// <returns></returns>
-        IList<MonitorConfig> SelectListAllMonitorConfigs(IDbConnection conn);
+        IEnumerable<MonitorConfig> SelectListAllMonitorConfigs(IDbConnection conn);
 
         /// <summary>
         /// Pulls out the current tables we have to check if any are missing 
         /// </summary>
         /// <param name="conn"></param>
         /// <returns></returns>
-        IList<string> SelectListAllExistingTables(IDbConnection conn);
+        IEnumerable<string> SelectListAllExistingTables(IDbConnection conn);
 
         /// <summary>
         /// Builds the new tables that are required
