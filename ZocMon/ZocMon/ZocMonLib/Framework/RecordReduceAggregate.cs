@@ -6,10 +6,10 @@ namespace ZocMonLib
 {
     public class RecordReduceAggregate : IRecordReduceAggregate
     { 
-        public DateTime Aggregate(DateTime lastReductionTime, ReduceLevel targetReduceLevel, IList<MonitorRecord<double>> sourceAggregationList, IDictionary<DateTime, IList<MonitorRecord<double>>> destinationAggregatedList)
+        public DateTime Aggregate(DateTime lastReductionTime, ReduceLevel targetReduceLevel, IEnumerable<MonitorRecord<double>> sourceAggregationList, IDictionary<DateTime, IList<MonitorRecord<double>>> destinationAggregatedList)
         {
             //Nothing to do....
-            if (sourceAggregationList.Count == 0) 
+            if (!sourceAggregationList.Any()) 
                 return Constant.MinDbDateTime;
 
             var resolutionSpan = TimeSpan.FromMilliseconds(targetReduceLevel.Resolution);

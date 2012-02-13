@@ -52,7 +52,7 @@ namespace ZocMonLib
         /// <param name="conn"></param>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        IList<MonitorRecord<double>> SelectListForUpdateExisting(string tableName, DateTime timeStamp, IDbConnection conn, IDbTransaction transaction = null);
+        IEnumerable<MonitorRecord<double>> SelectListForUpdateExisting(string tableName, DateTime timeStamp, IDbConnection conn, IDbTransaction transaction = null);
 
         /// <summary>
         /// Select the list of records that where previously reduced, get the most recent data point 
@@ -61,7 +61,7 @@ namespace ZocMonLib
         /// <param name="tableName"></param>
         /// <param name="conn"></param>
         /// <returns></returns>
-        IList<MonitorRecord<double>> SelectListForLastReduced(string tableName, IDbConnection conn);
+        IEnumerable<MonitorRecord<double>> SelectListForLastReduced(string tableName, IDbConnection conn);
 
         /// <summary>  
         /// Pulls out the lastReducedUpdate record and the lastReductionTime
@@ -81,7 +81,7 @@ namespace ZocMonLib
         /// <param name="lastReductionTime"></param>
         /// <param name="conn"></param>
         /// <returns></returns>
-        IList<MonitorRecord<double>> SelectListRequiringReduction(string tableName, bool hasTargetReducedRecord, DateTime lastReductionTime, IDbConnection conn);
+        IEnumerable<MonitorRecord<double>> SelectListRequiringReduction(string tableName, bool hasTargetReducedRecord, DateTime lastReductionTime, IDbConnection conn);
 
         /// <summary>
         /// Delete data before the earlier of the reducedTo date, or the history length configured in for the reduce level.
@@ -105,7 +105,7 @@ namespace ZocMonLib
         /// <param name="tableName"></param>
         /// <param name="conn"></param>
         /// <returns></returns>
-        IList<MonitorRecord<double>> SelectListLastComparisonData(string tableName, IDbConnection conn);
+        IEnumerable<MonitorRecord<double>> SelectListLastComparisonData(string tableName, IDbConnection conn);
 
         /// <summary>
         /// Get the data to be reduced, starting from the last point that was already reduced 
@@ -114,8 +114,8 @@ namespace ZocMonLib
         /// <param name="hasLastPrediction"> </param>
         /// <param name="reducedDataStartTime"> </param>
         /// <param name="conn"></param>
-        /// <returns></returns> SelectListLastComparisonData
-        IList<MonitorRecord<double>> SelectListNeedingToBeReduced(string reducedTableName, bool hasLastPrediction, DateTime reducedDataStartTime, IDbConnection conn);
+        /// <returns></returns> 
+        IEnumerable<MonitorRecord<double>> SelectListNeedingToBeReduced(string reducedTableName, bool hasLastPrediction, DateTime reducedDataStartTime, IDbConnection conn);
 
         /// <summary>
         /// Creates a given monitorConfig and its reduce levels

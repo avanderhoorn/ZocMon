@@ -149,62 +149,55 @@ namespace ZocMonLib
             }
         }
         
-        public IList<MonitorRecord<double>> SelectListForUpdateExisting(string tableName, DateTime timeStamp, IDbConnection conn, IDbTransaction transaction = null)
+        public IEnumerable<MonitorRecord<double>> SelectListForUpdateExisting(string tableName, DateTime timeStamp, IDbConnection conn, IDbTransaction transaction = null)
         {
             const string getExistingFormat = "select * from [{0}] where {1} >= '{2}' order by {1}";
             var getExistingSql = string.Format(getExistingFormat, tableName, StorageCommandsSql.TimeStampParameterName, timeStamp);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, getExistingSql, transaction).ToList(); //TODO switch to just return the IEnu.
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, getExistingSql, transaction);
         }
 
-        public IList<MonitorRecord<double>> SelectListForLastReduced(string tableName, IDbConnection conn)
+        public IEnumerable<MonitorRecord<double>> SelectListForLastReduced(string tableName, IDbConnection conn)
         {
             var loadLastReducedUpdateSql = string.Format(StorageCommandsSql.LoadLastUpdateFormat, tableName);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastReducedUpdateSql).ToList(); //TODO switch to just return the IEnu.
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastReducedUpdateSql);
         }
 
         public StorageLastReduced RetrieveLastReducedData(string tableName, long resolution, IDbConnection conn)
         {
             var lastReducedList = SelectListForLastReduced(tableName, conn);
 
-            MonitorRecord<double> lastReducedUpdate;
-            DateTime lastReductionTime;
-            if (lastReducedList.Count == 0)
-            {
-                // we have no reduced data yet
-                lastReducedUpdate = null;
-                lastReductionTime = Constant.MinDbDateTime;
-            }
-            else if (lastReducedList.Count == 1)
-            {
-                // we've loaded the last reduced update
-                lastReducedUpdate = lastReducedList.First();
-                lastReductionTime = lastReducedUpdate.TimeStamp - TimeSpan.FromMilliseconds((long)(resolution / 2));
-            }
-            else
-            {
-                lastReducedUpdate = lastReducedList.First();
+            var lastReducedListCount = lastReducedList.Count();
+            var lastReducedUpdate = lastReducedList.FirstOrDefault();
+            var lastReductionTime = Constant.MinDbDateTime;
+
+            //0 means we have no reduced data yet and 1 means we've loaded the last reduced update, many means we have a problem
+            if (lastReducedListCount > 0)   
+            { 
                 lastReductionTime = lastReducedUpdate.TimeStamp - TimeSpan.FromMilliseconds((long)(resolution / 2));
 
-                //No primary key on these table, so have to delete all with that timestamp and insert one back in 
-                var sqlDelete = "DELETE FROM " + ParseTableName(tableName) + " WHERE TimeStamp = @time";
-                ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, sqlDelete, new { time = lastReducedUpdate.TimeStamp });
+                if (lastReducedListCount > 1)
+                {
+                    //No primary key on these table, so have to delete all with that timestamp and insert one back in 
+                    var sqlDelete = "DELETE FROM " + ParseTableName(tableName) + " WHERE TimeStamp = @time";
+                    ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, sqlDelete, new { time = lastReducedUpdate.TimeStamp });
 
-                ZocMonSqlHelper.InsertRecordWithConnection(conn, lastReducedUpdate, tableName);
+                    ZocMonSqlHelper.InsertRecordWithConnection(conn, lastReducedUpdate, tableName);
 
-                _logger.Warn("Expected 0 or 1 updates, but got: " + lastReducedList.Count + " for \"" + tableName + "\"");
+                    _logger.Warn("Expected 0 or 1 updates, but got: " + lastReducedListCount + " for \"" + tableName + "\"");
+                } 
             }
 
             return new StorageLastReduced { Record = lastReducedUpdate, Time = lastReductionTime };
         }
 
-        public IList<MonitorRecord<double>> SelectListRequiringReduction(string tableName, bool hasTargetReducedRecord, DateTime lastReductionTime, IDbConnection conn)
+        public IEnumerable<MonitorRecord<double>> SelectListRequiringReduction(string tableName, bool hasTargetReducedRecord, DateTime lastReductionTime, IDbConnection conn)
         {
             var whereClause = !hasTargetReducedRecord ? "" : string.Format(StorageCommandsSql.LoadDataWhereFormat, lastReductionTime);
             var loadToBeReducedSql = string.Format(StorageCommandsSql.LoadDataFormat, tableName, whereClause);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadToBeReducedSql).ToList(); //TODO switch to just return the IEnu.
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadToBeReducedSql);
         }
 
         public void ClearReducedData(string configName, DateTime reducedTo, ReduceLevel reduceLevel, IDbConnection conn)
@@ -233,20 +226,20 @@ namespace ZocMonLib
         }
 
 
-        public IList<MonitorRecord<double>> SelectListLastComparisonData(string comparisonTableName, IDbConnection conn)
+        public IEnumerable<MonitorRecord<double>> SelectListLastComparisonData(string comparisonTableName, IDbConnection conn)
         {
             var loadLastComparisonSql = string.Format(StorageCommandsSql.LoadLastComparisonFormat, comparisonTableName);
             var lastComparison = ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastComparisonSql).SingleOrDefault();
 
-            return new List<MonitorRecord<double>> { lastComparison }; //TODO switch to just return the IEnu.
+            return new List<MonitorRecord<double>> {lastComparison};
         }
 
-        public IList<MonitorRecord<double>> SelectListNeedingToBeReduced(string reducedTableName, bool hasLastPrediction, DateTime reducedDataStartTime, IDbConnection conn)
+        public IEnumerable<MonitorRecord<double>> SelectListNeedingToBeReduced(string reducedTableName, bool hasLastPrediction, DateTime reducedDataStartTime, IDbConnection conn)
         {
             var whereClause = (!hasLastPrediction ? "" : string.Format(StorageCommandsSql.LoadDataWhereFormat, reducedDataStartTime));
             var reducedSql = string.Format(StorageCommandsSql.LoadComparisonFormat, reducedTableName, whereClause);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, reducedSql).ToList(); //TODO switch to just return the IEnu.
+            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, reducedSql);
         }
 
         public void CreateConfigAndReduceLevels(MonitorConfig monitorConfig, IEnumerable<ReduceLevel> reduceLevels, IDbConnection conn)

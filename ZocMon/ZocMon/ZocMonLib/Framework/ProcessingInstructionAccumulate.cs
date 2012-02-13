@@ -39,7 +39,7 @@ namespace ZocMonLib
             return new List<MonitorRecord<double>>(); 
         }
 
-        private ProcessingInstructionData GetProcessingData(IList<MonitorRecord<double>> lastComparisonList, long resolution)
+        private ProcessingInstructionData GetProcessingData(IEnumerable<MonitorRecord<double>> lastComparisonList, long resolution)
         {
             var data = new ProcessingInstructionData();
 
@@ -49,7 +49,7 @@ namespace ZocMonLib
             data.ReducedDataStartTime = DateTime.Now.AddTicks(-TimeSpan.FromDays(WeeksHistory * 7).Ticks);  //Load data from 4 weeks ago 
 
             //If we have some previous data to work with lets use it
-            if (lastComparisonList.Count == 1)
+            if (lastComparisonList.Any())
             {
                 //We've loaded the last available prediction
                 data.LastPrediction = lastComparisonList.First();
@@ -60,15 +60,15 @@ namespace ZocMonLib
             return data;
         }
 
-        private void ProcessResult(long reduceResolution, DateTime lastPredictionTime, IList<MonitorRecord<double>> reducedOrdered, IDictionary<long, MonitorRecordComparison<double>> expectedValues)
+        private void ProcessResult(long reduceResolution, DateTime lastPredictionTime, IEnumerable<MonitorRecord<double>> reducedOrdered, IDictionary<long, MonitorRecordComparison<double>> expectedValues)
         {
             var halfResolution = TimeSpan.FromMilliseconds((long)(reduceResolution / 2));
 
             //If we have some data to be reduced, reduece it down
-            if (reducedOrdered.Count > 0)
+            if (reducedOrdered.Any())
             {
                 //Loop through and index each to-be-reduced item
-                var updates = new Dictionary<long, MonitorRecord<double>>(reducedOrdered.Count);
+                var updates = new Dictionary<long, MonitorRecord<double>>();
                 foreach (var update in reducedOrdered)
                     updates.Add(update.TimeStamp.Ticks - halfResolution.Ticks, update);
 

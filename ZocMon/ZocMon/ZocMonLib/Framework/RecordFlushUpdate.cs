@@ -52,7 +52,7 @@ namespace ZocMonLib
                     var matchingValue = _cache.Empty;
 
                     var valuesEnumerator = values.GetEnumerator();
-                    while ((hasNext = valuesEnumerator.MoveNext()) && ((matchingValue = valuesEnumerator.Current.Value).TimeStamp < existingValue.TimeStamp)) ;
+                    while ((hasNext = valuesEnumerator.MoveNext()) && ((matchingValue = valuesEnumerator.Current.Value).TimeStamp < existingValue.TimeStamp));
 
                     combineList.Clear();
 

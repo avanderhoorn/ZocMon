@@ -13,6 +13,6 @@ namespace ZocMonLib
         /// <param name="sourceAggregationList"></param>
         /// <param name="destinationAggregatedList"></param>
         /// <returns>The DateTime of the last aggregated data point.</returns>
-        DateTime Aggregate(DateTime lastReductionTime, ReduceLevel targetReduceLevel, IList<MonitorRecord<double>> sourceAggregationList, IDictionary<DateTime, IList<MonitorRecord<double>>> destinationAggregatedList);
+        DateTime Aggregate(DateTime lastReductionTime, ReduceLevel targetReduceLevel, IEnumerable<MonitorRecord<double>> sourceAggregationList, IDictionary<DateTime, IList<MonitorRecord<double>>> destinationAggregatedList);
     }
 }
