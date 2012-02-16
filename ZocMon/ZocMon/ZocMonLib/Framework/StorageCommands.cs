@@ -85,12 +85,12 @@ namespace ZocMonLib
             {
                 const string rowExistsFormat = "select count(1) from [{0}] where TimeStamp = '{1}'";
                 sql = string.Format(rowExistsFormat, tableName, update.TimeStamp);
-                rowCount = ZocMonSqlHelper.ExecuteScalarWithConnection(conn, sql);
+                rowCount = DatabaseSqlHelper.ExecuteScalarWithConnection(conn, sql);
             }
             if (knownToExist || rowCount == 1)
             {
                 var updateSql = string.Format(StorageCommandsSql.UpdateFormat, tableName);
-                var result = ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, updateSql, update);
+                var result = DatabaseSqlHelper.ExecuteNonQueryWithConnection(conn, updateSql, update);
                 if (result != 1)
                     throw new DataException("Expected to update 1 row, but updated " + result + " for sql: \"" + updateSql + "\"");
                 ret = true;
@@ -154,14 +154,14 @@ namespace ZocMonLib
             const string getExistingFormat = "select * from [{0}] where {1} >= '{2}' order by {1}";
             var getExistingSql = string.Format(getExistingFormat, tableName, StorageCommandsSql.TimeStampParameterName, timeStamp);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, getExistingSql, transaction);
+            return DatabaseSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, getExistingSql, transaction);
         }
 
         public IEnumerable<MonitorRecord<double>> SelectListForLastReduced(string tableName, IDbConnection conn)
         {
             var loadLastReducedUpdateSql = string.Format(StorageCommandsSql.LoadLastUpdateFormat, tableName);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastReducedUpdateSql);
+            return DatabaseSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastReducedUpdateSql);
         }
 
         public StorageLastReduced RetrieveLastReducedData(string tableName, long resolution, IDbConnection conn)
@@ -181,9 +181,9 @@ namespace ZocMonLib
                 {
                     //No primary key on these table, so have to delete all with that timestamp and insert one back in 
                     var sqlDelete = "DELETE FROM " + ParseTableName(tableName) + " WHERE TimeStamp = @time";
-                    ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, sqlDelete, new { time = lastReducedUpdate.TimeStamp });
+                    DatabaseSqlHelper.ExecuteNonQueryWithConnection(conn, sqlDelete, new { time = lastReducedUpdate.TimeStamp });
 
-                    ZocMonSqlHelper.InsertRecordWithConnection(conn, lastReducedUpdate, tableName);
+                    DatabaseSqlHelper.InsertRecordWithConnection(conn, lastReducedUpdate, tableName);
 
                     _logger.Warn("Expected 0 or 1 updates, but got: " + lastReducedListCount + " for \"" + tableName + "\"");
                 } 
@@ -197,7 +197,7 @@ namespace ZocMonLib
             var whereClause = !hasTargetReducedRecord ? "" : string.Format(StorageCommandsSql.LoadDataWhereFormat, lastReductionTime);
             var loadToBeReducedSql = string.Format(StorageCommandsSql.LoadDataFormat, tableName, whereClause);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadToBeReducedSql);
+            return DatabaseSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadToBeReducedSql);
         }
 
         public void ClearReducedData(string configName, DateTime reducedTo, ReduceLevel reduceLevel, IDbConnection conn)
@@ -207,13 +207,13 @@ namespace ZocMonLib
 
             var deleteSql = string.Format(StorageCommandsSql.DeleteDataFormat, Support.MakeReducedName(configName, reduceLevel.Resolution), deleteBeforeDate);
 
-            ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, deleteSql);
+            DatabaseSqlHelper.ExecuteNonQueryWithConnection(conn, deleteSql);
         }
 
         public void PergeDuplicateReducedData(string tableName, IDbConnection conn)
         {
             var dupCheckSql = @"select rl.TimeStamp as TimeStamp, count(1) as Count from [" + tableName + "] rl group by TimeStamp having count(1) > 1";
-            var dups = ZocMonSqlHelper.CreateListWithConnection<DupInfo>(conn, dupCheckSql);
+            var dups = DatabaseSqlHelper.CreateListWithConnection<DupInfo>(conn, dupCheckSql);
 
             if (dups.Any())
             {
@@ -229,7 +229,7 @@ namespace ZocMonLib
         public IEnumerable<MonitorRecord<double>> SelectListLastComparisonData(string comparisonTableName, IDbConnection conn)
         {
             var loadLastComparisonSql = string.Format(StorageCommandsSql.LoadLastComparisonFormat, comparisonTableName);
-            var lastComparison = ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastComparisonSql).SingleOrDefault();
+            var lastComparison = DatabaseSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, loadLastComparisonSql).SingleOrDefault();
 
             return new List<MonitorRecord<double>> {lastComparison};
         }
@@ -239,7 +239,7 @@ namespace ZocMonLib
             var whereClause = (!hasLastPrediction ? "" : string.Format(StorageCommandsSql.LoadDataWhereFormat, reducedDataStartTime));
             var reducedSql = string.Format(StorageCommandsSql.LoadComparisonFormat, reducedTableName, whereClause);
 
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, reducedSql);
+            return DatabaseSqlHelper.CreateListWithConnection<MonitorRecord<double>>(conn, reducedSql);
         }
 
         public void CreateConfigAndReduceLevels(MonitorConfig monitorConfig, IEnumerable<ReduceLevel> reduceLevels, IDbConnection conn)
@@ -247,7 +247,7 @@ namespace ZocMonLib
             using (var transaction = conn.BeginTransaction())
             {
                 //The "if this doesn't already exist" check is inside the query string
-                ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, StorageCommandsSql.MonitorConfigInsert,
+                DatabaseSqlHelper.ExecuteNonQueryWithConnection(conn, StorageCommandsSql.MonitorConfigInsert,
                     new
                     {
                         name = monitorConfig.Name,
@@ -256,7 +256,7 @@ namespace ZocMonLib
 
                 foreach (var reduceLevel in reduceLevels)
                 {
-                    ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, StorageCommandsSql.ReduceLevelInsert,
+                    DatabaseSqlHelper.ExecuteNonQueryWithConnection(conn, StorageCommandsSql.ReduceLevelInsert,
                         new
                         {
                             name = reduceLevel.MonitorConfigName,

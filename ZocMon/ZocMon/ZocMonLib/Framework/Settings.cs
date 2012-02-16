@@ -41,7 +41,7 @@ namespace ZocMonLib
             var storageFactory = settingsExtensionOptions.StorageFactory;
             if (settingsExtensionOptions.StorageFactory == null)
             {
-                var storageFactoryProvider = new StorageFactoryProvider();
+                var storageFactoryProvider = new StorageFactoryProvider(new WebConfigProvider(), this);
                 storageFactory = storageFactoryProvider.CreateProvider();
             }
             var storageCommands = settingsExtensionOptions.StorageCommands ?? new StorageCommands(storageFactory, this);

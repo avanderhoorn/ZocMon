@@ -51,6 +51,7 @@
     <Compile Include="Framework\ISetupSystemData.cs" />
     <Compile Include="Framework\ISetupSystemTables.cs" />
     <Compile Include="Framework\IStorageCommandsSetup.cs" />
+    <Compile Include="Framework\IWebConfigProvider.cs" />
     <Compile Include="Framework\ProcessingInstructionProvider.cs" />
     <Compile Include="Framework\ReduceMethodProvider.cs" />
     <Compile Include="Framework\SetupSystem.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Framework\StorageCommands.cs" />
     <Compile Include="Framework\StorageLastReduced.cs" />
     <Compile Include="Framework\SetupMonitorConfig.cs" />
+    <Compile Include="Framework\WebConfigProvider.cs" />
     <Compile Include="_stuff\IExternalConfiguration.cs" />
     <Compile Include="Framework\IStorageFactoryProvider.cs" />
     <Compile Include="Framework\IStorageFactory.cs" />
@@ -101,9 +103,9 @@
     <Compile Include="_stuff\ExternalConfiguration.cs" />
     <Compile Include="Framework\SystemLogger.cs" />
     <Compile Include="Framework\SystemLoggerProvider.cs" />
-    <Compile Include="_stuff\SqlMapper.cs" />
-    <Compile Include="_stuff\SqlMapperExtensions.cs" />
-    <Compile Include="_stuff\ZocMonSqlHelper.cs" />
+    <Compile Include="Support\SqlMapper.cs" />
+    <Compile Include="Support\SqlMapperExtensions.cs" />
+    <Compile Include="Framework\DatabaseSqlHelper.cs" />
     <Compile Include="Framework\ProcessingInstructionAccumulate.cs" />
     <Compile Include="Framework\ProcessingInstructionAverage.cs" />
     <Compile Include="Framework\IProcessingInstruction.cs" />

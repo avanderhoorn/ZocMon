@@ -6,7 +6,8 @@ using Dapper.Contrib.Extensions;
 
 namespace ZocMonLib
 {
-    public static class ZocMonSqlHelper
+    //Don't know weather this class should exist... probably just use dapper directly
+    public static class DatabaseSqlHelper
     {
         public static int ExecuteScalarWithConnection(IDbConnection conn, string sql)
         {

@@ -66,6 +66,7 @@
     <Compile Include="Framework\TestForSetupSystem.cs" />
     <Compile Include="Framework\TestForSetupSystemData.cs" />
     <Compile Include="Framework\TestForSetupSystemTables.cs" />
+    <Compile Include="Framework\TestForStorageFactoryProvider.cs" />
     <Compile Include="Framework\TestSetupMonitorConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Framework\TestForRecordFlush.cs" />

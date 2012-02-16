@@ -10,17 +10,17 @@ namespace ZocMonLib
     {
         public IEnumerable<ReduceLevel> SelectListAllReduceLevels(IDbConnection conn)
         {
-            return ZocMonSqlHelper.CreateListWithConnection<ReduceLevel>(conn, StorageCommandsSql.ReduceLevelSql);
+            return DatabaseSqlHelper.CreateListWithConnection<ReduceLevel>(conn, StorageCommandsSql.ReduceLevelSql);
         }
 
         public IEnumerable<MonitorConfig> SelectListAllMonitorConfigs(IDbConnection conn)
         {
-            return ZocMonSqlHelper.CreateListWithConnection<MonitorConfig>(conn, StorageCommandsSql.MonitorConfigSql);
+            return DatabaseSqlHelper.CreateListWithConnection<MonitorConfig>(conn, StorageCommandsSql.MonitorConfigSql);
         }
 
         public IEnumerable<string> SelectListAllExistingTables(IDbConnection conn)
         {
-            return ZocMonSqlHelper.CreateListWithConnection<string>(conn, StorageCommandsSql.GetExistingTables);
+            return DatabaseSqlHelper.CreateListWithConnection<string>(conn, StorageCommandsSql.GetExistingTables);
         }
 
         public void BuildTables(IEnumerable<string> needCreatingTable, IEnumerable<string> needCreatingTableComparison, Dictionary<string, Tuple<string, long>> tablesConfigResolution, IDbConnection conn)
@@ -34,7 +34,7 @@ namespace ZocMonLib
             foreach (var needsCreating in needCreatingTableComparison)
                 builder.AppendFormat(StorageCommandsSql.ComparisonTableCreateFormat, needsCreating);
 
-            ZocMonSqlHelper.ExecuteNonQueryWithConnection(conn, builder.ToString());
+            DatabaseSqlHelper.ExecuteNonQueryWithConnection(conn, builder.ToString());
         }
     }
 }
